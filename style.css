@@ -1,0 +1,101 @@
+/* Senior Architect Final Typesetting - Fixed Breaks & Full Bleed Cover */
+
+@font-face {
+    font-family: 'MainBookFont';
+    src: local('Georgia'), local('Times New Roman'), serif;
+}
+
+/* --- 1. Global Reset & Rhythm --- */
+body {
+    font-family: 'MainBookFont', serif;
+    font-size: 11pt;
+    line-height: 1.8;
+    color: #1a1a1a;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    text-align: justify;
+    hyphens: auto;
+    margin-bottom: 1.5em;
+}
+
+/* --- 2. Full-Page Cover (Zero Margins for Page 1) --- */
+@page :first {
+    margin: 0;
+}
+
+#cover-page {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#cover-page .cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Fills the whole page without distortion */
+    display: block;
+}
+
+/* --- 3. Page Breaks & Hierarchy --- */
+@page {
+    margin: 25mm;
+    @bottom-center {
+        content: counter(page);
+        font-family: 'Georgia', serif;
+        font-size: 10pt;
+        color: #666;
+    }
+}
+
+/* Every H1 starts a fresh page automatically */
+h1 {
+    page-break-before: always;
+    font-size: 2.2rem;
+    color: #1a5f7a;
+    border-bottom: 3px solid #1a5f7a;
+    padding-bottom: 15px;
+    margin-top: 50pt;
+    margin-bottom: 30pt;
+    text-transform: uppercase;
+}
+
+/* Specific suppressions to avoid blank pages */
+#cover-page h1, .half-title-page h1 {
+    page-break-before: avoid;
+    border: none;
+    text-align: center;
+}
+
+h2, h3 {
+    text-align: left;
+    color: #1a5276;
+    margin-top: 2rem;
+    page-break-after: avoid;
+}
+
+/* --- 4. Content Elements --- */
+pre {
+    background: #1e1e2e;
+    color: #d1d1d1;
+    padding: 1.5em;
+    border-radius: 6px;
+    font-family: 'Consolas', monospace;
+    font-size: 9.5pt;
+    margin: 20pt 0;
+    white-space: pre-wrap;
+}
+
+.senior-insight, .operational-warning {
+    padding: 20px;
+    margin: 30pt 0;
+    border-left: 10px solid #1a5f7a;
+}
+
+.senior-insight { background: #f0f7fb; border-color: #1a5f7a; }
+.operational-warning { background: #fff9f9; border-color: #d9534f; }

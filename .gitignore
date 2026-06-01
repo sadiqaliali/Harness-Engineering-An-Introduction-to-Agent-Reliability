@@ -1,0 +1,12 @@
+# Logs and temp files
+*.log
+*.tmp
+*.db
+session_context.json
+__pycache__/
+.venv/
+.pytest_cache/
+.meta/
+
+Westage/
+assets/

@@ -1,0 +1,10 @@
+# Harness Governance Policy (Example)
+version: "0.1"
+rules:
+  pii_redaction:
+    enabled: true
+    action: "block"
+    threshold: 0.9
+  max_iterations: 3
+  circuit_breaker_timeout: 30
+  logging_level: "DEBUG"
