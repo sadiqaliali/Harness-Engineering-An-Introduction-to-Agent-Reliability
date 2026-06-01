@@ -51,6 +51,8 @@ Explore the book chapter-by-chapter for the best experience:
 - **[Chapter 10: Future Research Frontiers](book/Chapter_10.md)**
 - **[Chapter 11: The Future of Harness Engineering](book/Chapter_11.md)**
 
+> **Download Official PDF:** [Read/Download on Archive.org](https://archive.org/details/harness-engineering-an-introduction-to-agent-reliability)
+
 ## 📈 Harness Reliability Maturity Model (HRMM)
 This project helps organizations move through the five levels of agentic maturity:
 - **L1 (Ad-hoc):** Single-model prompts with manual verification.
