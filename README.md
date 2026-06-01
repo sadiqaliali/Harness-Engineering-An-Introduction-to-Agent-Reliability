@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/Cover image.png" width="600" alt="Harness Engineering Cover">
+</p>
+
 # Harness Engineering: Industrial Infrastructure for AI Agents
 
 **Build the harness, not just the horse.**
@@ -24,6 +28,24 @@ In 2026, 88% of AI agent projects fail to reach production. Why? Because agents 
 
 **Positioning Statement:** While tools like LangGraph focus on *how* an agent talks, Harness Engineering focuses on the *industrial safety* of that conversation. We provide the only formalized, open-source discipline combining reliability math with cryptographic audit trails.
 
+## 📖 Interactive Reading Guide
+Explore the book chapter-by-chapter for the best experience:
+
+- **[Front Matter: Title & Preface](book/TITLE_PAGE.md)**
+- **[Chapter 01: What is Harness Engineering?](book/Chapter_01.md)**
+- **[Chapter 02: Failure Modes of Agentic Systems](book/Chapter_02.md)**
+- **[Chapter 03: Agent Reliability Engineering (ARE)](book/Chapter_03.md)**
+- **[Chapter 04: The Harness Runtime](book/Chapter_04.md)**
+- **[Chapter 05: AI Observability & The Flight Recorder](book/Chapter_05.md)**
+- **[Chapter 06: The AI Governance Layer](book/Chapter_06.md)**
+- **[Chapter 07: Cloud-Native Agentic Infrastructure](book/Chapter_07.md)**
+- **[Chapter 08: The Harness Protocol](book/Chapter_08.md)**
+- **[Chapter 09: Harness-Core Reference MVP](book/Chapter_09.md)**
+- **[Chapter 10: Future Research Frontiers](book/Chapter_10.md)**
+- **[Chapter 11: The Future of Harness Engineering](book/Chapter_11.md)**
+
+*Download the complete master manuscript here: **[Harness-Engineering-An-Introduction-to-Agent-Reliability.md](Harness-Engineering-An-Introduction-to-Agent-Reliability.md)***
+
 ## 📈 Harness Reliability Maturity Model (HRMM)
 This project helps organizations move through the five levels of agentic maturity:
 - **L1 (Ad-hoc):** Single-model prompts with manual verification.
@@ -38,14 +60,6 @@ This project helps organizations move through the five levels of agentic maturit
 - **Governance Kernel:** Policy-as-Code (PaC) to enforce safety boundaries at the runtime level.
 - **Harness Protocol:** A semantic gRPC-based middleware ensuring global agent interoperability.
 
-## 📚 The Manuscript
-Explore the definitive guide to ARE in **[Harness-Engineering-An-Introduction-to-Agent-Reliability.md](Harness-Engineering-An-Introduction-to-Agent-Reliability.md)**.
-1. What is Harness Engineering?
-2. Failure Modes of Agentic Systems
-...
-11. The Future of Harness Engineering
-12. **Appendices: Roadmap, Labs, MCQ Bank, and Glossary**
-
 ## 🏁 Getting Started
 ### 1. Installation
 ```bash
@@ -58,7 +72,6 @@ pip install -r requirements.txt
 ```bash
 python main.py
 ```
-Check `agent_flight.log` for the cryptographically bound audit trail.
 
 ### 3. Run Tests
 ```bash
