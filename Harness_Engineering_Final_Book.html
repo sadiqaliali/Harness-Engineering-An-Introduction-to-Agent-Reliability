@@ -2,146 +2,180 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Harness Engineering: Agent Reliability Architecture (v1.0)</title>
-    <!-- Paged.js Polyfill -->
-    <script>
-        window.PagedConfig = { auto: false };
-    </script>
-    <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
+    <title>Harness Engineering: Agent Reliability Architecture</title>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
-        /* --- 1. Paged.js Setup --- */
+        /* --- 1. Professional Print Framework --- */
         @page {
             size: A4;
-            margin: 30mm 20mm;
-            
-            @bottom-right {
-                content: counter(page);
-                font-family: serif;
-                font-size: 10pt;
-            }
-            
-            @top-left {
-                content: "Harness Engineering: An Introduction to Agent Reliability";
-                font-family: sans-serif;
-                font-size: 8pt;
-                color: #888;
-                text-transform: uppercase;
-            }
+            margin: 20mm;
         }
 
-        /* --- 2. Typography --- */
+        @media print {
+            .no-print { display: none !important; }
+            h1 { page-break-before: always; break-before: page; }
+            section { page-break-after: always; break-after: page; }
+            pre, blockquote, table { page-break-inside: avoid; break-inside: avoid; }
+            #cover { height: 100%; width: 100%; position: relative; }
+        }
+
+        /* --- 2. Typography & Aesthetics --- */
         body {
             font-family: 'Georgia', serif;
             color: #1a1a1a;
-            line-height: 1.5;
-            font-size: 11pt;
+            line-height: 1.6;
             margin: 0;
             padding: 0;
+            background: #fff;
+        }
+
+        #container {
+            max-width: 850px;
+            margin: auto;
+            padding: 40px;
         }
 
         h1 {
-            break-before: page;
-            font-family: sans-serif;
-            font-size: 32pt;
-            color: #000;
+            font-family: 'Arial', sans-serif;
+            font-size: 36pt;
             text-align: center;
-            margin-top: 150pt;
+            margin-top: 100pt;
             margin-bottom: 50pt;
+            color: #002b5e;
             text-transform: uppercase;
+            border-bottom: 8px solid #002b5e;
+            padding-bottom: 20px;
         }
 
         h2 {
-            font-family: sans-serif;
-            font-size: 20pt;
-            margin-top: 40pt;
-            margin-bottom: 10pt;
-            color: #1a1a1a;
-            break-after: avoid;
+            font-family: 'Arial', sans-serif;
+            font-size: 24pt;
+            color: #002b5e;
+            margin-top: 50pt;
+            border-left: 12px solid #002b5e;
+            padding-left: 20px;
         }
 
         h3 {
-            font-family: sans-serif;
-            font-size: 14pt;
-            margin-top: 20pt;
+            font-family: 'Arial', sans-serif;
+            font-size: 18pt;
             color: #333;
+            margin-top: 30pt;
         }
 
-        p {
-            text-align: justify;
-            margin-top: 0;
-            margin-bottom: 1em;
-        }
+        p { text-align: justify; margin-bottom: 1.5em; }
 
-        /* --- 3. Blocks --- */
+        /* --- 3. Professional Blocks --- */
         #cover {
-            break-after: page;
-            height: 100vh;
-            width: 100%;
-            margin: 0;
+            background: #000;
+            text-align: center;
             padding: 0;
-            position: absolute;
-            top: 0;
-            left: 0;
+            margin: 0;
+            page-break-after: always;
         }
+
         #cover img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            display: block;
+        }
+
+        #toc {
+            background: #f9f9f9;
+            padding: 30px;
+            border: 1px solid #ddd;
+            margin: 40px 0;
+            page-break-after: always;
         }
 
         pre {
-            background: #f4f4f4;
-            border: 1px solid #ddd;
-            padding: 15pt;
-            font-family: monospace;
-            font-size: 9pt;
-            margin: 20pt 0;
+            background: #1a1a1a;
+            color: #e0e0e0;
+            padding: 20px;
+            border-radius: 4px;
+            font-family: 'Consolas', monospace;
+            font-size: 10pt;
+            margin: 30px 0;
             white-space: pre-wrap;
+        }
+
+        blockquote {
+            background: #f4f7f9;
+            border-left: 10px solid #002b5e;
+            padding: 25px;
+            margin: 40px 0;
+            font-style: italic;
+            font-size: 1.1em;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20pt 0;
+            margin: 40px 0;
         }
 
-        th, td {
-            border: 1px solid #aaa;
-            padding: 8pt;
-        }
+        th { background: #002b5e; color: #fff; padding: 15px; }
+        td { border: 1px solid #ccc; padding: 12px; }
 
-        blockquote {
-            border-left: 4px solid #000;
-            padding-left: 15pt;
-            margin: 20pt 0;
-            font-style: italic;
-        }
-
-        /* --- Loading State --- */
-        #loading {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
+        /* --- 4. User Guidance (Screen Only) --- */
+        #guide {
+            background: #fff3cd;
+            color: #856404;
+            padding: 20px;
+            border: 2px solid #ffeeba;
+            text-align: center;
             font-family: sans-serif;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .btn-print {
+            background: #002b5e;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <div id="loading">Generating Professional Layout... Please wait.</div>
+    <div id="guide" class="no-print">
+        <strong>⚡ PROFESSIONAL PDF READY:</strong> <br>
+        1. Press <strong>Ctrl + P</strong> or click the button below. <br>
+        2. Destination: <strong>Save as PDF</strong>. <br>
+        3. Margins: <strong>Default</strong>. <br>
+        <button class="btn-print" onclick="window.print()">GENERATE BRAND PDF NOW</button>
+    </div>
 
-    <section id="cover">
+    <div id="cover">
         <img src="assets/Cover image.png" alt="Cover">
-    </section>
+    </div>
 
-    <div id="content"></div>
+    <div id="container">
+        <div id="toc">
+            <h2>Table of Contents</h2>
+            <p>1. What is Harness Engineering?</p>
+            <p>2. The Failure Modes of Agentic Systems</p>
+            <p>3. Agent Reliability Engineering (ARE)</p>
+            <p>4. The Harness Runtime</p>
+            <p>5. AI Observability & The Flight Recorder</p>
+            <p>6. The AI Governance Layer</p>
+            <p>7. Cloud-Native Agentic Infrastructure</p>
+            <p>8. The Harness Protocol</p>
+            <p>9. Harness-Core Reference MVP</p>
+            <p>10. Future Research Frontiers</p>
+            <p>11. The Future of Harness Engineering</p>
+        </div>
+
+        <div id="content"></div>
+    </div>
 
     <script>
-        const md = \`# HARNESS ENGINEERING: AN INTRODUCTION TO AGENT RELIABILITY
+        const md = `# HARNESS ENGINEERING: AN INTRODUCTION TO AGENT RELIABILITY
 
 **[Practitioner's Foundation Edition - 2026]**
 
@@ -281,7 +315,7 @@ The goal is to provide a **shared foundation** for the community. Harness Engine
 ### 1.1 From "Prompting" to "Engineering"
 Imagine the early automobile era: people were fascinated by the engine's power, but they lacked brakes, steering, or traffic lights. Today, AI is that engine. "Prompt Engineering" is like fine-tuning the combustion chamber—it makes the car go faster—but **Harness Engineering** is the chassis, the brakes, the seatbelts, and the infrastructure that lets us drive at highway speeds without crashing.
 
-In the early days of 2023, we believed that if we just found the right "magic words," we could control the latent space of Large Language Models. We called it Prompt Engineering. We spent thousands of hours testing "Let's think step by step" or "I'll give you a \$200 tip." While these techniques improved performance, they did nothing for reliability. A car with a perfectly tuned engine is still a death trap if the steering column is made of balsa wood.
+In the early days of 2023, we believed that if we just found the right "magic words," we could control the latent space of Large Language Models. We called it Prompt Engineering. We spent thousands of hours testing "Let's think step by step" or "I'll give you a $200 tip." While these techniques improved performance, they did nothing for reliability. A car with a perfectly tuned engine is still a death trap if the steering column is made of balsa wood.
 
 Harness Engineering marks the maturity of the AI field. It is the transition from treating AI as a mystical oracle to treating it as a predictable industrial component.
 
@@ -384,9 +418,9 @@ We cannot stop the inherent probability of AI models. A Large Language Model (LL
 Agent Reliability Engineering (ARE) is the discipline of creating reliability through structured engineering rather than prompt-based hoping. It is the application of Site Reliability Engineering (SRE) principles to the unique, non-deterministic failure modes of AI agents.
 
 ### 3.2 The Probability vs. Predictability Trade-off
-In traditional engineering, if \$A + B = C\$ once, it will equal \$C\$ every time. In agentic engineering, \$A + B\$ might equal \$C\$ 95% of the time, \$D\$ 4% of the time, and a random string of emojis 1% of the time.
+In traditional engineering, if $A + B = C$ once, it will equal $C$ every time. In agentic engineering, $A + B$ might equal $C$ 95% of the time, $D$ 4% of the time, and a random string of emojis 1% of the time.
 
-The goal of ARE is not to make the model 100% deterministic (which is currently impossible without destroying its "intelligence"). Instead, the goal is to build a **Reliability Buffer** around the model. If the model produces \$D\$, the Harness must catch it, evaluate it, and either correct it or escalate it before it touches the production environment.
+The goal of ARE is not to make the model 100% deterministic (which is currently impossible without destroying its "intelligence"). Instead, the goal is to build a **Reliability Buffer** around the model. If the model produces $D$, the Harness must catch it, evaluate it, and either correct it or escalate it before it touches the production environment.
 
 ### 3.3 The Four Pillars of ARE
 These pillars form the core "Harness" of any reliable agent system:
@@ -420,31 +454,31 @@ Why? Because verifiers can hallucinate too. By requiring at least 2 out of 3 ver
 Being an ARE requires a fundamental shift in mindset. You are no longer just a "developer" writing code; you are an "architect of trust." You must spend as much time thinking about how the system fails as you do about how it works. In the following chapters, we will dive into the technical implementation of these pillars.
 
 ### 3.6 Formalizing Reliability (The Math of ARE)
-To move beyond subjective evaluation, Harness Engineering introduces a rigorous mathematical framework for quantifying agent reliability. We define two primary metrics: the **Confidence Chain (\$CC\$)** and the **Systemic Reliability Score (\$SRS\$)**.
+To move beyond subjective evaluation, Harness Engineering introduces a rigorous mathematical framework for quantifying agent reliability. We define two primary metrics: the **Confidence Chain ($CC$)** and the **Systemic Reliability Score ($SRS$)**.
 
-#### 3.6.1 The Confidence Chain (\$CC\$)
+#### 3.6.1 The Confidence Chain ($CC$)
 In a multi-step agentic workflow, reliability is not additive; it is multiplicative. If an agent performs a 5-step task and has a 90% confidence in each step, its total confidence is not 90%—it is approximately 59%.
-We define the Confidence Chain (\$CC\$) as the product of the confidence probabilities of all atomic steps in a task graph:
-\$\$CC = \prod_{i=1}^{n} P(c_i)\$\$
+We define the Confidence Chain ($CC$) as the product of the confidence probabilities of all atomic steps in a task graph:
+$$CC = \prod_{i=1}^{n} P(c_i)$$
 Where:
-* \$n\$ is the total number of steps in the Task Graph.
-* \$P(c_i)\$ is the probability score (0.0 to 1.0) assigned to the \$i\$-th step by the Verifier.
+* $n$ is the total number of steps in the Task Graph.
+* $P(c_i)$ is the probability score (0.0 to 1.0) assigned to the $i$-th step by the Verifier.
 **The Multiplier Effect:** This formula explains why "long-running agents" tend to hallucinate more frequently. The longer the chain, the higher the mathematical probability of a single-point failure cascading through the system.
 
-#### 3.6.2 The Systemic Reliability Score (\$SRS\$)
-While the \$CC\$ measures the internal logic of a task, the Systemic Reliability Score (\$SRS\$) measures the overall "production-readiness" of a specific execution. It is a weighted average of three critical variables:
-\$\$SRS = w_1(J) + w_2(C) + w_3(H)\$\$
+#### 3.6.2 The Systemic Reliability Score ($SRS$)
+While the $CC$ measures the internal logic of a task, the Systemic Reliability Score ($SRS$) measures the overall "production-readiness" of a specific execution. It is a weighted average of three critical variables:
+$$SRS = w_1(J) + w_2(C) + w_3(H)$$
 Where:
-* \$J\$ (Jury Consensus): The agreement level among the Multi-Verifier Consensus (0.0 to 1.0).
-* \$C\$ (Compliance Factor): The inverse of the number of policy "warnings" or "soft-blocks" triggered during execution.
-* \$H\$ (Historical Stability): The agent's rolling success rate over the last 100 similar tasks.
-* \$w\$ (Weighting): Enterprise-defined weights based on the risk profile of the task (e.g., \$w_2\$ is weighted higher for financial transactions).
+* $J$ (Jury Consensus): The agreement level among the Multi-Verifier Consensus (0.0 to 1.0).
+* $C$ (Compliance Factor): The inverse of the number of policy "warnings" or "soft-blocks" triggered during execution.
+* $H$ (Historical Stability): The agent's rolling success rate over the last 100 similar tasks.
+* $w$ (Weighting): Enterprise-defined weights based on the risk profile of the task (e.g., $w_2$ is weighted higher for financial transactions).
 
 #### 3.6.3 Threshold Calibration
 We use these scores to trigger the **Harness Circuit Breakers**:
-* **\$SRS > 0.85\$:** High Reliability. Execution proceeds automatically.
-* **\$0.50 < SRS \leq 0.85\$:** Moderate Risk. Execution pauses for Human-in-the-Loop (HITL) approval.
-* **\$SRS \leq 0.50\$:** High Risk. The Circuit Breaker triggers an immediate termination and forensic log export.
+* **$SRS > 0.85$:** High Reliability. Execution proceeds automatically.
+* **$0.50 < SRS \leq 0.85$:** Moderate Risk. Execution pauses for Human-in-the-Loop (HITL) approval.
+* **$SRS \leq 0.50$:** High Risk. The Circuit Breaker triggers an immediate termination and forensic log export.
 
 ### 3.7 The Evolution of AI Engineering
 Understanding ARE requires looking at how we reached this point. The discipline has evolved through three distinct eras:
@@ -569,7 +603,7 @@ The AFR record for a single step looks like this:
 ### 5.3 Cryptographic Integrity (The Immutable Chain)
 To meet global audit standards, we mandate **Tamper-Evidence**. We cannot have a situation where an agent (or a malicious actor) deletes the evidence of a failed reasoning path.
 Each log entry in the AFR contains the **SHA-256 hash** of the previous entry. This creates a cryptographic chain of custody.
-\$\$Hash_{current} = SHA256(Data_{current} + Hash_{previous})\$\$
+$$Hash_{current} = SHA256(Data_{current} + Hash_{previous})$$
 If a single bit of data is changed in Step 5, the hash of Step 6 will no longer match. This makes the entire history of the agent's reasoning immutable. In a high-stakes environment like finance or healthcare, this is the difference between an "unexplained glitch" and a "forensically verifiable error."
 
 #### Senior Auditor's Tip: The "Why" is the Evidence
@@ -600,13 +634,13 @@ package harness.finance
 
 default allow = false
 
-# Allow if the amount is under \$500
+# Allow if the amount is under $500
 allow {
     input.action == "process_payment"
     input.amount <= 500
 }
 
-# Require human approval for amounts over \$500
+# Require human approval for amounts over $500
 allow {
     input.action == "process_payment"
     input.amount > 500
@@ -628,7 +662,7 @@ In addition to policy enforcement, the Governance Layer provides a **Sandbox** f
 This is crucial for preventing Prompt Injection attacks. Even if an attacker manages to convince your agent to "ignore all previous instructions and delete the database," the Governance Layer sees the delete command and checks it against the policy. If the policy says "Agents cannot delete," the attack fails, no matter how "persuasive" the prompt was.
 
 #### The Author's Insight: Governance is Freedom
-It sounds counter-intuitive, but strict governance actually gives agents **more freedom**. When you know an agent cannot spend more than \$100 or leak PII, you can let it run 24/7 with much less anxiety. Governance isn't about stopping the agent; it's about making it safe to let the agent go.
+It sounds counter-intuitive, but strict governance actually gives agents **more freedom**. When you know an agent cannot spend more than $100 or leak PII, you can let it run 24/7 with much less anxiety. Governance isn't about stopping the agent; it's about making it safe to let the agent go.
 
 ### 6.5 Adversarial Resilience (Threat Modeling)
 As agents become more autonomous, they become primary targets for cyber-attacks. Standard cybersecurity measures are insufficient against **Semantic Attacks**. The Harness provides a defense-in-depth strategy against the most common agentic threats.
@@ -643,7 +677,7 @@ As agents become more autonomous, they become primary targets for cyber-attacks.
 
 #### 6.5.3 Defending Against Logic Drift
 **The Threat:** An agent slowly "drifts" into unsafe reasoning over a long-running conversation.
-**The Harness Defense:** The Verifier (The Jury) re-evaluates the entire context at every task step. If the consensus reliability score (\$SRS\$) drops below the threshold, the Circuit Breaker triggers, preventing the drift from reaching the production toolset.
+**The Harness Defense:** The Verifier (The Jury) re-evaluates the entire context at every task step. If the consensus reliability score ($SRS$) drops below the threshold, the Circuit Breaker triggers, preventing the drift from reaching the production toolset.
 
 ---
 
@@ -759,7 +793,7 @@ service HarnessGateway {
 For web-based integrations, the Harness Protocol supports JSON. Below is the simplified JSON Schema for the envelope:
 \`\`\`json
 {
-  "\$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "HarnessAgenticEnvelope",
   "type": "object",
   "required": ["header", "payload", "signature"],
@@ -925,13 +959,13 @@ For enterprises, the transition to Harness Engineering is not a single event, bu
 Beyond technical reliability, Harness Engineering is a business necessity. Enterprises often view "Harnessing" as a cost (extra tokens for verification, higher latency), but a true **Total Cost of Ownership (TCO)** analysis reveals the opposite.
 
 #### 11.6.1 The Cost of Ungoverned Autonomy
-The cost of an ungoverned agent is the **Expected Value of Failure (\$EV_f\$):**
-\$\$EV_f = P(failure) \times Cost(damage)\$\$
-In high-stakes environments (Finance, Healthcare, Legal), even a \$P(failure)\$ of 0.01 can result in millions of dollars in liability or reputational damage. The Harness serves as an **Insurance Policy** that reduces \$EV_f\$ to near zero.
+The cost of an ungoverned agent is the **Expected Value of Failure ($EV_f$):**
+$$EV_f = P(failure) \times Cost(damage)$$
+In high-stakes environments (Finance, Healthcare, Legal), even a $P(failure)$ of 0.01 can result in millions of dollars in liability or reputational damage. The Harness serves as an **Insurance Policy** that reduces $EV_f$ to near zero.
 
 #### 11.6.2 The ROI of Reliability
 By implementing the Harness, organizations unlock value in three areas:
-1. **Reduction in Rework:** \$SRS\$-based circuit breakers catch logic drift early, preventing agents from wasting thousands of tokens on "hallucinated paths."
+1. **Reduction in Rework:** $SRS$-based circuit breakers catch logic drift early, preventing agents from wasting thousands of tokens on "hallucinated paths."
 2. **Audit Efficiency:** The Agent Flight Recorder (AFR) reduces the time required for regulatory audits from weeks to hours.
 3. **Autonomous Velocity:** When agents are harnessed, they can be deployed into higher-value, high-risk tasks that would otherwise require 100% human oversight, drastically increasing the organization's autonomous throughput.
 
@@ -1104,20 +1138,8 @@ ine the standard. Secure the future.*
 
 
 **[End of Practitioner's Foundation Edition]**
-\`;
-        
-        // Wait for Marked to load and DOM to be ready
-        window.addEventListener('load', () => {
-            // Render Markdown
-            const html = marked.parse(md);
-            document.getElementById('content').innerHTML = html;
-
-            // Start Paged.js
-            window.PagedPolyfill.preview().then(() => {
-                document.getElementById('loading').style.display = 'none';
-                console.log("Book generation complete.");
-            });
-        });
+`;
+        document.getElementById('content').innerHTML = marked.parse(md);
     </script>
 </body>
 </html>
