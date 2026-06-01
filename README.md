@@ -4,10 +4,33 @@
 
 Harness Engineering is the discipline of building operational infrastructure for reliable, governable, and observable AI agents. This repository contains the **Harness Kernel**, a reference implementation for Agent Reliability Engineering (ARE).
 
+> **Industry Formula (2026):** `Agent = Model + Harness`
+
 ## 🚀 The Production Wall
 In 2026, 88% of AI agent projects fail to reach production. Why? Because agents are treated as "black boxes" without the necessary infrastructure to manage reasoning drift, orchestration chaos, and the observability void.
 
 **Harness Engineering solves this by moving governance, reliability, and observability from prompts into a hardened System Kernel.**
+
+## ⚖️ Why Harness Engineering? (Competitive Landscape)
+
+| Feature | LangGraph / CrewAI | OpenTelemetry | **Harness Engineering (ARE)** |
+| :--- | :---: | :---: | :---: |
+| **Orchestration** | ✅ Full | ❌ None | ✅ Kernel-Level |
+| **Observability** | ⚠️ Basic | ✅ Full | ✅ Forensic (AFR) |
+| **Audit Integrity** | ❌ None | ❌ None | ✅ Cryptographic SHA-256 |
+| **Governance** | ⚠️ Prompt-Based | ❌ None | ✅ Policy-as-Code (PaC) |
+| **Reliability Math** | ❌ None | ❌ None | ✅ SRS / CC Formulas |
+| **Maturity Model** | ❌ None | ❌ None | ✅ HRMM (L1-L5) |
+
+**Positioning Statement:** While tools like LangGraph focus on *how* an agent talks, Harness Engineering focuses on the *industrial safety* of that conversation. We provide the only formalized, open-source discipline combining reliability math with cryptographic audit trails.
+
+## 📈 Harness Reliability Maturity Model (HRMM)
+This project helps organizations move through the five levels of agentic maturity:
+- **L1 (Ad-hoc):** Single-model prompts with manual verification.
+- **L2 (Observed):** Basic logging and error tracking.
+- **L3 (Governed):** Policy-as-Code boundaries and runtime enforcement.
+- **L4 (Forensic):** Cryptographically linked audit trails (AFR).
+- **L5 (Industrial):** Autonomous consensus (Jury) and stochastic reliability (SRS).
 
 ## 🛠️ Core Architecture
 - **Harness Runtime:** Decouples orchestration (Planner-Worker-Verifier) from model inference.

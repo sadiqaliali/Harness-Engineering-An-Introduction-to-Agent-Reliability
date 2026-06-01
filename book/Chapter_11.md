@@ -3,6 +3,13 @@
 ## 11.1 From Scripting to Reliability
 Harness Engineering is not about creating new job titles; it is about addressing the reality that autonomous systems cannot be managed with traditional manual scripting. 
 
+### 11.1.1 The Economic Imperative
+As of mid-2026, the industry has reached a critical tipping point:
+*   **Gartner** projects that **40% of enterprise agents** will fail or be decommissioned due to a lack of governance infrastructure.
+*   **McKinsey** reports that **80% of agentic AI implementation time** is now consumed by data engineering and governance work—not model selection.
+
+These figures validate our thesis: the "Harness" is no longer optional; it is the primary bottleneck to AI value.
+
 ## 11.2 The ARE Framework (Agent Reliability Engineering)
 We have identified that AI agent deployments require three specific capabilities that do not currently exist in standard AI stacks:
 1. **Forensic Auditability:** The ability to trace reasoning, not just final output.

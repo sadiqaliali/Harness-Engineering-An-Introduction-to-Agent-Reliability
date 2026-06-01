@@ -74,7 +74,8 @@ The goal is to provide a **shared foundation** for the community. Harness Engine
     * 1.3 Case Study: The Midnight Margin Call
     * 1.4 Why Does This Matter?
     * 1.5 The Harness Commitment
-    * 1.6 Related Work & Prior Art
+    * 1.6 The 2026 Ecosystem: Standing on Shoulders
+    * 1.7 Why This Book is Different
 2. **Chapter 2: The Failure Modes of Agentic Systems**
     * 2.1 The Reasoning Gap
     * 2.2 Taxonomy of Agentic Failure
@@ -302,14 +303,14 @@ We use these scores to trigger the **Harness Circuit Breakers**:
 * **$0.50 < SRS \leq 0.85$:** Moderate Risk. Execution pauses for Human-in-the-Loop (HITL) approval.
 * **$SRS \leq 0.50$:** High Risk. The Circuit Breaker triggers an immediate termination and forensic log export.
 
+### 3.7 The Evolution of AI Engineering
+Understanding ARE requires looking at how we reached this point. The discipline has evolved through three distinct eras:
 
-> **Author's Note — Threshold Calibration**
->
-> The SRS thresholds defined above (0.85 / 0.50) represent sensible starting defaults
-> based on practitioner experience. They are not derived from a statistically validated
-> dataset. Organizations should treat these as baselines and recalibrate based on
-> observed outcomes in their own production environment. Empirical calibration data
-> from community deployments will be published in v2.0.
+1.  **Era of Prompting (2023-2024):** Focus was on "talking" to the model. Success was measured by how well a model responded to a specific instruction.
+2.  **Era of Context (2024-2025):** Focus shifted to RAG (Retrieval-Augmented Generation) and Memory. Success was measured by the model's access to relevant data.
+3.  **Era of the Harness (2026+):** Focus is on **Agent Reliability Engineering (ARE)**. Success is measured by the system's ability to govern, verify, and audit autonomous actions.
+
+> **Key Takeaway:** ARE converts AI from a "magical black box" into a measurable, verifiable infrastructure component. If you cannot quantify an agent's confidence, you cannot trust it in production.
 
 
 ---
@@ -742,6 +743,13 @@ The goal is not "Human-Like Intelligence," but "**Accountable Autonomy**." We ar
 ### 11.1 From Discipline to Industry
 Our vision for the next decade is the transition to **Agent Reliability Engineering (ARE)** as a standardized industry discipline. We anticipate every enterprise will have an ARE team owning the "Harness," focusing on observability, policy compliance, and the circuit breaker architecture.
 
+#### 11.1.1 The Economic Imperative
+As of mid-2026, the industry has reached a critical tipping point:
+* **Gartner** projects that **40% of enterprise agents** will fail or be decommissioned due to a lack of governance infrastructure.
+* **McKinsey** reports that **80% of agentic AI implementation time** is now consumed by data engineering and governance work—not model selection.
+
+These figures validate our thesis: the "Harness" is no longer optional; it is the primary bottleneck to AI value.
+
 ### 11.2 ARE as an Industry Standard
 As the field matures, we anticipate that enterprises deploying autonomous agents will increasingly adopt specialized ARE teams. This is an open-source initiative, and we invite the community to contribute and improve these standards as the technology evolves.
 * **The ARE Role:** Similar to Site Reliability Engineers (SREs), the ARE professional will own the "Harness," focusing on agent observability, policy compliance, and the "Circuit Breaker" architecture.
@@ -926,6 +934,30 @@ This book is a living document. To suggest corrections, add case studies, or con
 ---
 
 *Build the harness. Define the standard. Secure the future.*
+
+
+**[End of Practitioner's Foundation Edition]**
+2.0 |
+| NHI integration with SPIFFE/SPIRE and AWS IAM | Planned | v2.0 |
+| Harness Reliability Index (HRI) specification | In Research | v2.0 |
+| Federated Agent Networks (ZKP) | Research Phase | v3.0 |
+
+### How to Contribute
+
+This book is a living document. To suggest corrections, add case studies, or contribute benchmark data:
+
+1. Open an issue on GitHub:
+   https://github.com/sadiqaliali/Harness-Engineering-An-Introduction-to-Agent-Reliability
+2. Label it with: `content-feedback`, `benchmark-data`, or `citation-request`
+3. Accepted contributions will be credited in v2.0
+
+---
+
+*Build the harness. Define the standard. Secure the future.*
+
+
+**[End of Practitioner's Foundation Edition]**
+ine the standard. Secure the future.*
 
 
 **[End of Practitioner's Foundation Edition]**

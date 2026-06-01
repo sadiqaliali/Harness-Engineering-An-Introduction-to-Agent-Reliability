@@ -30,6 +30,13 @@ ARE relies on the **Confidence Chain**—the requirement that every step of reas
 
 By multiplying these scores, the system calculates a **Systemic Reliability Score**. If this score trends downward, the system acts before a failure occurs.
 
+## 3.4 The Evolution of AI Engineering
+Understanding ARE requires looking at how we reached this point. The discipline has evolved through three distinct eras:
+
+1.  **Era of Prompting (2023-2024):** Focus was on "talking" to the model. Success was measured by how well a model responded to a specific instruction.
+2.  **Era of Context (2024-2025):** Focus shifted to RAG (Retrieval-Augmented Generation) and Memory. Success was measured by the model's access to relevant data.
+3.  **Era of the Harness (2026+):** Focus is on **Agent Reliability Engineering (ARE)**. Success is measured by the system's ability to govern, verify, and audit autonomous actions.
+
 > **Key Takeaway:** ARE converts AI from a "magical black box" into a measurable, verifiable infrastructure component. If you cannot quantify an agent's confidence, you cannot trust it in production.
 
 ---
