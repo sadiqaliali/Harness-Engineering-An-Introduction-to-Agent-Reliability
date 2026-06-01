@@ -1,5 +1,12 @@
 <p align="center">
-  <img src="assets/Cover image.png" width="600" alt="Harness Engineering Cover">
+  <img src="assets/cover.png" width="800" alt="Harness Engineering: Agent Reliability Architecture">
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Version-1.0--Stable-blue?style=for-the-badge" alt="Version">
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License">
+  <img src="https://img.shields.io/badge/Python-3.10%2B-blueviolet?style=for-the-badge" alt="Python">
+  <img src="https://img.shields.io/badge/Industry-2026--Standard-orange?style=for-the-badge" alt="Industry 2026">
 </p>
 
 # Harness Engineering: Industrial Infrastructure for AI Agents
@@ -43,8 +50,6 @@ Explore the book chapter-by-chapter for the best experience:
 - **[Chapter 09: Harness-Core Reference MVP](book/Chapter_09.md)**
 - **[Chapter 10: Future Research Frontiers](book/Chapter_10.md)**
 - **[Chapter 11: The Future of Harness Engineering](book/Chapter_11.md)**
-
-*Download the complete master manuscript here: **[Harness-Engineering-An-Introduction-to-Agent-Reliability.md](Harness-Engineering-An-Introduction-to-Agent-Reliability.md)***
 
 ## 📈 Harness Reliability Maturity Model (HRMM)
 This project helps organizations move through the five levels of agentic maturity:
