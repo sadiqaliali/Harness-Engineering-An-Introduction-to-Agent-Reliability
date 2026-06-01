@@ -2,175 +2,162 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harness Engineering: Agent Reliability Architecture</title>
+    <title>Harness Engineering: Agent Reliability Architecture (v1.0)</title>
+    <!-- Paged.js Polyfill for professional book layout -->
+    <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
-        :root {
-            --brand-primary: #1a2a6c;
-            --brand-secondary: #b21f1f;
-            --brand-accent: #fdbb2d;
-            --text-main: #2c3e50;
-            --bg-light: #fdfdfd;
-        }
-
+        /* --- 1. Paged.js / CSS Media Quarto Setup --- */
         @page {
             size: A4;
             margin: 25mm 20mm;
+            
             @bottom-right {
                 content: counter(page);
-                font-family: 'Georgia', serif;
+                font-family: 'Helvetica', sans-serif;
                 font-size: 9pt;
+                color: #555;
+            }
+            
+            @top-left {
+                content: "Harness Engineering: Agent Reliability";
+                font-family: 'Helvetica', sans-serif;
+                font-size: 8pt;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                color: #999;
             }
         }
 
+        /* --- 2. Typography & Brand Colors --- */
+        :root {
+            --primary: #0a192f;
+            --accent: #112240;
+            --text: #1d1d1f;
+            --gray: #444;
+        }
+
         body {
-            font-family: 'Georgia', 'Times New Roman', serif;
-            line-height: 1.7;
-            color: var(--text-main);
-            background: var(--bg-light);
+            font-family: 'Georgia', serif;
+            color: var(--text);
+            line-height: 1.6;
             margin: 0;
             padding: 0;
         }
 
-        /* --- Cover Page --- */
+        /* --- 3. Chapter & Page Breaks --- */
+        h1 {
+            break-before: page; /* Force every Chapter to its own page */
+            font-family: 'Helvetica', sans-serif;
+            font-size: 28pt;
+            color: var(--primary);
+            text-align: center;
+            margin-top: 100pt;
+            margin-bottom: 50pt;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-family: 'Helvetica', sans-serif;
+            font-size: 18pt;
+            color: var(--accent);
+            margin-top: 30pt;
+            margin-bottom: 15pt;
+            break-after: avoid;
+        }
+
+        h3 {
+            font-family: 'Helvetica', sans-serif;
+            font-size: 14pt;
+            margin-top: 20pt;
+            color: var(--gray);
+        }
+
+        /* --- 4. Content Styling --- */
+        p {
+            text-align: justify;
+            margin-bottom: 12pt;
+            hyphens: auto;
+        }
+
+        /* Eliminate extra gaps between elements */
+        * { margin-top: 0; }
+
+        /* Cover Page Styling */
         #cover {
-            height: 297mm;
-            width: 210mm;
+            break-after: page;
+            height: 100vh;
+            width: 100%;
             background: #000;
+            margin: 0;
+            padding: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            page-break-after: always;
-            overflow: hidden;
         }
-
-        .cover-img {
+        #cover img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        /* --- Layout & Typography --- */
-        #container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px;
-            background: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.05);
-        }
-
-        h1, h2, h3 {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            color: var(--brand-primary);
-            page-break-before: always;
-            margin-top: 2em;
-            letter-spacing: -0.02em;
-        }
-
-        h1 {
-            font-size: 2.8em;
-            border-bottom: 4px solid var(--brand-accent);
-            padding-bottom: 10px;
-            text-transform: uppercase;
-        }
-
-        h2 {
-            font-size: 2em;
-            border-left: 8px solid var(--brand-primary);
-            padding-left: 20px;
-            margin-bottom: 1em;
-        }
-
-        p {
-            margin-bottom: 1.5em;
-            text-align: justify;
-        }
-
-        /* --- Callouts & Blocks --- */
+        /* Blockquotes / Callouts */
         blockquote {
-            border-left: 5px solid var(--brand-secondary);
-            background: #fff5f5;
-            padding: 20px 30px;
-            margin: 30px 0;
+            background: #f8f9fa;
+            border-left: 5px solid var(--primary);
+            padding: 15pt 20pt;
+            margin: 20pt 0;
             font-style: italic;
-            border-radius: 0 10px 10px 0;
+            font-size: 11pt;
         }
 
+        /* Code Blocks */
         pre {
-            background: #1e1e2e;
-            color: #eff1f5;
-            padding: 20px;
-            border-radius: 8px;
-            font-family: 'Fira Code', 'Consolas', monospace;
-            font-size: 0.9em;
-            overflow-x: auto;
-            margin: 25px 0;
-            border: 1px solid #313244;
-        }
-
-        code {
-            background: #f1f1f1;
-            padding: 2px 5px;
+            background: #111;
+            color: #eee;
+            padding: 15pt;
             border-radius: 4px;
-            font-family: monospace;
+            font-family: 'Consolas', monospace;
+            font-size: 9pt;
+            margin: 20pt 0;
+            white-space: pre-wrap;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 30px 0;
-            font-family: sans-serif;
-            font-size: 0.95em;
+            margin: 20pt 0;
+            font-family: 'Helvetica', sans-serif;
+            font-size: 10pt;
         }
 
-        th {
-            background: var(--brand-primary);
-            color: white;
-            padding: 12px;
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10pt;
             text-align: left;
         }
 
-        td {
-            border: 1px solid #ddd;
-            padding: 10px;
-        }
+        th { background: #eee; font-weight: bold; }
 
-        tr:nth-child(even) { background: #f9f9f9; }
+        /* Math formula formatting */
+        .math { font-style: italic; font-family: 'Times New Roman', serif; }
 
-        /* --- Branding --- */
-        .brand-footer {
-            text-align: center;
-            font-size: 0.8em;
-            color: #999;
-            margin-top: 50px;
-            border-top: 1px solid #eee;
-            padding-top: 20px;
-        }
-
-        /* --- Print Optimization --- */
-        @media print {
-            #container { box-shadow: none; padding: 0; }
-            .no-print { display: none; }
-        }
     </style>
 </head>
 <body>
-    <div id="cover">
-        <img src="assets/Cover image.png" class="cover-img" alt="Harness Engineering Cover">
-    </div>
+    <!-- Cover -->
+    <section id="cover">
+        <img src="assets/Cover image.png" alt="Book Cover">
+    </section>
 
-    <div id="container">
-        <div id="content"></div>
-        
-        <div class="brand-footer">
-            &copy; 2026 Harness Engineering Initiative. All Rights Reserved. <br>
-            Industrial Grade Infrastructure for the Agentic Era.
-        </div>
-    </div>
+    <!-- Content Target -->
+    <div id="content"></div>
 
     <script>
-        const rawMarkdown = `# HARNESS ENGINEERING: AN INTRODUCTION TO AGENT RELIABILITY
+        const markdownContent = `# HARNESS ENGINEERING: AN INTRODUCTION TO AGENT RELIABILITY
 
 **[Practitioner's Foundation Edition - 2026]**
 
@@ -1134,7 +1121,15 @@ ine the standard. Secure the future.*
 
 **[End of Practitioner's Foundation Edition]**
 `;
-        document.getElementById('content').innerHTML = marked.parse(rawMarkdown);
+        
+        // Custom Renderer for better formatting
+        const renderer = new marked.Renderer();
+        renderer.heading = function(text, level) {
+            if (level === 1) return \`<h1>\${text}</h1>\`;
+            return \`<h\${level}>\${text}</h\${level}>\`;
+        };
+
+        document.getElementById('content').innerHTML = marked.parse(markdownContent, { renderer: renderer });
     </script>
 </body>
 </html>
