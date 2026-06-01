@@ -3,99 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <title>Harness Engineering: Agent Reliability Architecture (v1.0)</title>
-    <!-- Paged.js Polyfill for professional book layout -->
+    <!-- Paged.js Polyfill -->
+    <script>
+        window.PagedConfig = { auto: false };
+    </script>
     <script src="https://unpkg.com/pagedjs/dist/paged.polyfill.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
-        /* --- 1. Paged.js / CSS Media Quarto Setup --- */
+        /* --- 1. Paged.js Setup --- */
         @page {
             size: A4;
-            margin: 25mm 20mm;
+            margin: 30mm 20mm;
             
             @bottom-right {
                 content: counter(page);
-                font-family: 'Helvetica', sans-serif;
-                font-size: 9pt;
-                color: #555;
+                font-family: serif;
+                font-size: 10pt;
             }
             
             @top-left {
-                content: "Harness Engineering: Agent Reliability";
-                font-family: 'Helvetica', sans-serif;
+                content: "Harness Engineering: An Introduction to Agent Reliability";
+                font-family: sans-serif;
                 font-size: 8pt;
+                color: #888;
                 text-transform: uppercase;
-                letter-spacing: 1px;
-                color: #999;
             }
         }
 
-        /* --- 2. Typography & Brand Colors --- */
-        :root {
-            --primary: #0a192f;
-            --accent: #112240;
-            --text: #1d1d1f;
-            --gray: #444;
-        }
-
+        /* --- 2. Typography --- */
         body {
             font-family: 'Georgia', serif;
-            color: var(--text);
-            line-height: 1.6;
+            color: #1a1a1a;
+            line-height: 1.5;
+            font-size: 11pt;
             margin: 0;
             padding: 0;
         }
 
-        /* --- 3. Chapter & Page Breaks --- */
         h1 {
-            break-before: page; /* Force every Chapter to its own page */
-            font-family: 'Helvetica', sans-serif;
-            font-size: 28pt;
-            color: var(--primary);
+            break-before: page;
+            font-family: sans-serif;
+            font-size: 32pt;
+            color: #000;
             text-align: center;
-            margin-top: 100pt;
+            margin-top: 150pt;
             margin-bottom: 50pt;
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 20px;
             text-transform: uppercase;
         }
 
         h2 {
-            font-family: 'Helvetica', sans-serif;
-            font-size: 18pt;
-            color: var(--accent);
-            margin-top: 30pt;
-            margin-bottom: 15pt;
+            font-family: sans-serif;
+            font-size: 20pt;
+            margin-top: 40pt;
+            margin-bottom: 10pt;
+            color: #1a1a1a;
             break-after: avoid;
         }
 
         h3 {
-            font-family: 'Helvetica', sans-serif;
+            font-family: sans-serif;
             font-size: 14pt;
             margin-top: 20pt;
-            color: var(--gray);
+            color: #333;
         }
 
-        /* --- 4. Content Styling --- */
         p {
             text-align: justify;
-            margin-bottom: 12pt;
-            hyphens: auto;
+            margin-top: 0;
+            margin-bottom: 1em;
         }
 
-        /* Eliminate extra gaps between elements */
-        * { margin-top: 0; }
-
-        /* Cover Page Styling */
+        /* --- 3. Blocks --- */
         #cover {
             break-after: page;
             height: 100vh;
             width: 100%;
-            background: #000;
             margin: 0;
             padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
         #cover img {
             width: 100%;
@@ -103,61 +90,58 @@
             object-fit: cover;
         }
 
-        /* Blockquotes / Callouts */
-        blockquote {
-            background: #f8f9fa;
-            border-left: 5px solid var(--primary);
-            padding: 15pt 20pt;
-            margin: 20pt 0;
-            font-style: italic;
-            font-size: 11pt;
-        }
-
-        /* Code Blocks */
         pre {
-            background: #111;
-            color: #eee;
+            background: #f4f4f4;
+            border: 1px solid #ddd;
             padding: 15pt;
-            border-radius: 4px;
-            font-family: 'Consolas', monospace;
+            font-family: monospace;
             font-size: 9pt;
             margin: 20pt 0;
             white-space: pre-wrap;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 20pt 0;
-            font-family: 'Helvetica', sans-serif;
-            font-size: 10pt;
         }
 
         th, td {
-            border: 1px solid #ddd;
-            padding: 10pt;
-            text-align: left;
+            border: 1px solid #aaa;
+            padding: 8pt;
         }
 
-        th { background: #eee; font-weight: bold; }
+        blockquote {
+            border-left: 4px solid #000;
+            padding-left: 15pt;
+            margin: 20pt 0;
+            font-style: italic;
+        }
 
-        /* Math formula formatting */
-        .math { font-style: italic; font-family: 'Times New Roman', serif; }
-
+        /* --- Loading State --- */
+        #loading {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            font-family: sans-serif;
+        }
     </style>
 </head>
 <body>
-    <!-- Cover -->
+    <div id="loading">Generating Professional Layout... Please wait.</div>
+
     <section id="cover">
-        <img src="assets/Cover image.png" alt="Book Cover">
+        <img src="assets/Cover image.png" alt="Cover">
     </section>
 
-    <!-- Content Target -->
     <div id="content"></div>
 
     <script>
-        const markdownContent = `# HARNESS ENGINEERING: AN INTRODUCTION TO AGENT RELIABILITY
+        const md = \`# HARNESS ENGINEERING: AN INTRODUCTION TO AGENT RELIABILITY
 
 **[Practitioner's Foundation Edition - 2026]**
 
@@ -1120,16 +1104,20 @@ ine the standard. Secure the future.*
 
 
 **[End of Practitioner's Foundation Edition]**
-`;
+\`;
         
-        // Custom Renderer for better formatting
-        const renderer = new marked.Renderer();
-        renderer.heading = function(text, level) {
-            if (level === 1) return \`<h1>\${text}</h1>\`;
-            return \`<h\${level}>\${text}</h\${level}>\`;
-        };
+        // Wait for Marked to load and DOM to be ready
+        window.addEventListener('load', () => {
+            // Render Markdown
+            const html = marked.parse(md);
+            document.getElementById('content').innerHTML = html;
 
-        document.getElementById('content').innerHTML = marked.parse(markdownContent, { renderer: renderer });
+            // Start Paged.js
+            window.PagedPolyfill.preview().then(() => {
+                document.getElementById('loading').style.display = 'none';
+                console.log("Book generation complete.");
+            });
+        });
     </script>
 </body>
 </html>
